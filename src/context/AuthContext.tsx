@@ -29,28 +29,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!auth) { setLoading(false); return; }
     const unsub = onAuthStateChanged(auth, (u) => { setUser(u); setLoading(false); });
     return unsub;
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    if (!auth) throw new Error('Firebase not configured');
     await signInWithEmailAndPassword(auth, email, password);
   };
 
   const signUp = async (name: string, email: string, password: string) => {
+    if (!auth) throw new Error('Firebase not configured');
     const cred = await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(cred.user, { displayName: name });
   };
 
   const signInWithGoogle = async () => {
+    if (!auth) throw new Error('Firebase not configured');
     await signInWithPopup(auth, googleProvider);
   };
 
   const signOut = async () => {
+    if (!auth) return;
     await firebaseSignOut(auth);
   };
 
   const resetPassword = async (email: string) => {
+    if (!auth) throw new Error('Firebase not configured');
     await sendPasswordResetEmail(auth, email);
   };
 

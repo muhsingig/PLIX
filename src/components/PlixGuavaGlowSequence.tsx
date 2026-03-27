@@ -156,7 +156,7 @@ export default function PlixGuavaGlowSequence() {
 
   return (
     <div ref={sectionRef} style={{ height: '600vh' }} className="relative w-full">
-      <div className="sticky top-0 w-full h-screen bg-[#F9F0EC] overflow-hidden">
+      <div className="sticky top-16 w-full overflow-hidden bg-[#F9F0EC]" style={{ height: 'calc(100vh - 4rem)' }}>
 
         {/* Loader */}
         {isLoading && (
