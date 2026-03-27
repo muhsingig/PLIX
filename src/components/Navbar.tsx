@@ -22,8 +22,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Products', path: '/products' },
-    { name: 'About',    path: '/about'    },
+    { name: 'Shop', path: '/shop' },
+    { name: 'Ingredients', path: '/science#ingredients' },
+    { name: 'Our Story', path: '/about' },
+    { name: 'Science', path: '/science' },
   ];
 
   const initials = user?.displayName
