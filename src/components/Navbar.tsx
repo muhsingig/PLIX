@@ -26,6 +26,7 @@ export default function Navbar() {
     { name: 'Ingredients', path: '/science#ingredients' },
     { name: 'Our Story', path: '/about' },
     { name: 'Science', path: '/science' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   const initials = user?.displayName
