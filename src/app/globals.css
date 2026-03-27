@@ -1,44 +1,42 @@
-/* ── Plix Brand Design Tokens ─────────────────────────────────── */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --plix-pink:        #F4A0A8;
-  --plix-pink-deep:   #E8758C;
-  --plix-green:       #1B4332;
-  --plix-green-mid:   #2D6A4F;
-  --plix-green-light: #95D5B2;
-  --plix-sage:        #F9F0EC;
-  --plix-purple:      #7B2D8B;
-  --plix-white:       #FFFFFF;
-  --plix-ink:         #1A1A1A;
-  --plix-muted:       #6B7280;
-}
+@import "../styles/tokens.css";
 
 @layer base {
   body {
-    background-color: var(--plix-sage);
-    color: var(--plix-ink);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--smoke);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
+    font-size: var(--body);
+    line-height: 1.65;
   }
-  h1, h2, h3, h4 {
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
+
+  h1, .h1 { font-size: var(--h1); font-weight: 700; letter-spacing: -0.03em; line-height: 1.0; }
+  h2, .h2 { font-size: var(--h2); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  h3, .h3 { font-size: var(--h3); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+  
+  .display { font-size: var(--display); font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; }
+  .body-lg { font-size: var(--body-lg); line-height: 1.7; }
+  .label   { font-size: var(--label); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .micro   { font-size: var(--micro); font-weight: 500; line-height: 1.4; }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--plix-sage); }
-::-webkit-scrollbar-thumb { background: var(--plix-pink); border-radius: 999px; }
+/* ── Custom Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--g-100); }
+::-webkit-scrollbar-thumb { background: var(--g-500); border-radius: 999px; }
 
-/* Ticker animation */
-@keyframes ticker {
+/* ── Utilities ───────────────────────────────────────────────── */
+.transition-std { transition: all var(--ms-std) var(--ease); }
+.hover-lift:hover { transform: translateY(-3px); }
+
+/* ── Marquee ─────────────────────────────────────────────────── */
+@keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-.ticker-track { animation: ticker 30s linear infinite; }
-.ticker-track:hover { animation-play-state: paused; }
+.marquee-track { animation: marquee 25s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }

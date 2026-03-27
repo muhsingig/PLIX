@@ -1,0 +1,58 @@
+/* ── Plix Original Design Tokens ─────────────────────────────────── */
+
+:root {
+  /* 🎨 Colors */
+  --g-900: #0A1F12; /* Darkest green — deep shadows */
+  --g-700: #1B4332; /* Core botanical green */
+  --g-500: #2D6A4F; /* Mid green — hover states */
+  --g-300: #74C69D; /* Light green — accents */
+  --g-100: #D8F3DC; /* Palest green — backgrounds */
+  
+  --p-700: #C2185B; /* Deep pink — text on light */
+  --p-500: #E8758C; /* Core blossom pink */
+  --p-300: #F4A0A8; /* Soft pink — primary CTA */
+  --p-100: #FDE8EC; /* Palest pink — card tints */
+  
+  --ink:   #0D0D0D; /* Near-black body text */
+  --smoke: #F7F5F2; /* Off-white page base */
+  --cloud: #FFFFFF; /* Pure white cards */
+
+  /* 📏 Spacing (8pt grid) */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 64px;
+  --s7: 96px;
+  --s8: 128px;
+
+  /* 📐 Border Radius */
+  --r-sm: 6px;   /* inputs, small pills */
+  --r-md: 14px;  /* cards, buttons */
+  --r-lg: 24px;  /* panels, large cards */
+  --r-xl: 40px;  /* hero blobs, feature panels */
+  --r-full: 9999px; /* tags, avatars, round buttons */
+
+  /* 🌑 Shadows */
+  --shadow-card:  0 2px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-hover: 0 8px 32px rgba(27,67,50,0.14), 0 2px 8px rgba(27,67,50,0.08);
+  --shadow-float: 0 20px 60px rgba(0,0,0,0.12);
+
+  /* 🎬 Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ms-micro: 120ms;
+  --ms-std:   240ms;
+  --ms-rich:  400ms;
+  --ms-cine:  600ms;
+
+  /* 🔡 Typography Fluid Scale (Inter) */
+  --display: clamp(56px, 8vw, 96px);
+  --h1:      clamp(40px, 5vw, 64px);
+  --h2:      clamp(28px, 3.5vw, 44px);
+  --h3:      clamp(20px, 2.5vw, 28px);
+  --body-lg: 18px;
+  --body:    16px;
+  --label:   11px;
+  --micro:   13px;
+}

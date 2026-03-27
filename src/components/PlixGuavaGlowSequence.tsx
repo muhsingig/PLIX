@@ -156,30 +156,30 @@ export default function PlixGuavaGlowSequence() {
 
   return (
     <div ref={sectionRef} style={{ height: '600vh' }} className="relative w-full">
-      <div className="sticky top-16 w-full overflow-hidden bg-[#F9F0EC]" style={{ height: 'calc(100vh - 4rem)' }}>
+      <div className="sticky top-16 w-full overflow-hidden bg-[var(--smoke)]" style={{ height: 'calc(100vh - 4rem)' }}>
 
         {/* Loader */}
         {isLoading && (
-          <div className="absolute inset-0 z-50 bg-[#F9F0EC] flex flex-col items-center justify-center gap-4">
-            <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#7B2D8B] animate-pulse">
+          <div className="absolute inset-0 z-50 bg-[var(--smoke)] flex flex-col items-center justify-center gap-4">
+            <p className="label text-[var(--g-700)] animate-pulse">
               Extracting Botanicals
             </p>
-            <div className="w-56 h-[2px] bg-[#7B2D8B]/20 rounded-full overflow-hidden">
-              <div className="h-full bg-[#7B2D8B] transition-all duration-200"
+            <div className="w-56 h-[1px] bg-[var(--g-700)]/10 rounded-full overflow-hidden">
+              <div className="h-full bg-[var(--g-700)] transition-all duration-200"
                 style={{ width: `${(loadedCount / FRAME_COUNT) * 100}%` }} />
             </div>
           </div>
         )}
 
-        {/* Canvas — positioned to fill screen, blend over #F9F0EC background */}
+        {/* Canvas — positioned to fill screen, blend over background */}
         <canvas ref={canvasRef}
-          className="absolute inset-0 w-full h-full mix-blend-multiply pointer-events-none" />
+          className="absolute inset-0 w-full h-full mix-blend-multiply pointer-events-none opacity-80" />
 
         {/* Scroll hint */}
         <div ref={hintRef}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 pointer-events-none">
-          <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-[#7B2D8B]">Scroll to Explore</span>
-          <div className="w-px h-10 bg-gradient-to-b from-[#7B2D8B] to-transparent" />
+          <span className="label text-[var(--g-700)] opacity-40">Scroll to Explore</span>
+          <div className="w-px h-10 bg-gradient-to-b from-[var(--g-700)]/40 to-transparent" />
         </div>
 
         {/* 
@@ -200,19 +200,18 @@ export default function PlixGuavaGlowSequence() {
               willChange: 'opacity, transform',
               textAlign: 'center',
               width: '90%',
-              maxWidth: '800px',
+              maxWidth: '900px',
               zIndex: 10,
               pointerEvents: 'none',
             }}
           >
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, lineHeight: 1.1, color: '#1A1A1A' }}
-              className={`${i === 3 ? 'text-4xl md:text-6xl' : 'text-5xl md:text-7xl'}`}>
+            <h2 className={`font-extrabold tracking-tight leading-[0.95] text-[var(--ink)] ${i === 3 ? 'text-5xl md:text-7xl' : 'text-6xl md:text-8xl'}`}>
               {i === 0 && <>ROOTED<br/>IN RITUAL</>}
               {i === 1 && <>CLINICALLY<br/>PROVEN</>}
               {i === 2 && <>INSTANT<br/>GLOW</>}
               {i === 3 && <>PLIX GUAVA GLOW</>}
             </h2>
-            <p className="mt-5 text-[10px] md:text-xs tracking-[0.35em] font-bold uppercase text-[#7B2D8B]">
+            <p className="label mt-6 text-[var(--g-700)] opacity-60">
               {t.s}
             </p>
           </div>

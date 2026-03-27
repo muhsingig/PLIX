@@ -26,9 +26,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const auth = getFirebaseAuth();
     if (!auth) { setLoading(false); return; }
-    // dynamic import to keep firebase off server
+    
+    // Dynamic import to keep firebase off server
     import('firebase/auth').then(({ onAuthStateChanged }) => {
-      const unsub = onAuthStateChanged(auth, (u) => { setUser(u); setLoading(false); });
+      const unsub = onAuthStateChanged(auth, (u) => { 
+        setUser(u); 
+        setLoading(false); 
+      });
       return () => unsub();
     });
   }, []);

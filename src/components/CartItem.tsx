@@ -1,62 +1,59 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CartItem as CartItemType } from '@/context/CartContext';
-import { useCart } from '@/context/CartContext';
+import { CartItem as ICartItem, useCart } from '@/context/CartContext';
 
-export default function CartItem({ item }: { item: CartItemType }) {
-  const { removeItem, updateQuantity } = useCart();
+export default function CartItem({ item }: { item: ICartItem }) {
+  const { updateQuantity, removeItem } = useCart();
 
   return (
-    <motion.div
+    <motion.div 
       layout
-      exit={{ x: -30, opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="flex items-center gap-4 py-4 border-b border-[var(--plix-sage)]"
+      initial={{ opacity: 0, x: -16 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -16, height: 0, marginTop: 0, marginBottom: 0, padding: 0 }}
+      className="bg-[var(--cloud)] mb-0.5 border-b border-black/5 flex items-center gap-[var(--s3)] py-[var(--s4)]"
     >
-      {/* Image placeholder */}
-      <div className="w-20 h-20 rounded-xl flex-shrink-0 flex items-center justify-center text-3xl"
-        style={{ backgroundColor: item.accentColor + '30' }}>
-        {item.category === 'Serums' ? '💧' :
-         item.category === 'Moisturizers' ? '🌿' :
-         item.category === 'Cleansers' ? '🫧' :
-         item.category === 'Sunscreen' ? '☀️' :
-         item.category === 'Hair Care' ? '🌱' : '✨'}
+      {/* Thumbnail */}
+      <div 
+        className="w-20 h-20 md:w-24 md:h-24 rounded-[var(--r-md)] flex items-center justify-center shrink-0 p-2"
+        style={{ backgroundColor: `${item.accentColor}1A` }}
+      >
+        <span className="text-4xl select-none">{item.category.includes('Serum') ? '💧' : '🌱'}</span>
       </div>
 
       {/* Info */}
       <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm text-[var(--plix-ink)] leading-snug truncate">{item.name}</p>
-        <p className="text-xs text-[var(--plix-muted)] mt-0.5">{item.category}</p>
-        <div className="flex gap-1 mt-1 flex-wrap">
-          {item.ingredients.map(ing => (
-            <span key={ing} className="text-[10px] bg-[var(--plix-sage)] rounded-full px-2 py-0.5">{ing}</span>
-          ))}
-        </div>
+         <h4 className="text-[var(--body)] font-bold text-[var(--ink)] truncate">{item.name}</h4>
+         <p className="micro text-[var(--g-700)] font-bold uppercase tracking-wider mt-0.5">{item.category}</p>
+         
+         {/* Stepper */}
+         <div className="flex items-center gap-[var(--s2)] mt-[var(--s2)] bg-[var(--smoke)] w-fit rounded-full p-1 border border-black/5">
+            <button 
+              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+              className="w-7 h-7 flex items-center justify-center rounded-full bg-white text-[var(--ink)] border border-black/10 hover:bg-red-50 hover:text-red-500 transition-colors font-bold"
+            >
+              −
+            </button>
+            <span className="text-sm font-black min-w-[20px] text-center">{item.quantity}</span>
+            <button 
+              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+              className="w-7 h-7 flex items-center justify-center rounded-full bg-[var(--g-700)] text-white hover:bg-[var(--g-500)] transition-colors font-bold"
+            >
+              +
+            </button>
+         </div>
       </div>
 
-      {/* Qty + price + remove */}
-      <div className="flex flex-col items-end gap-2">
-        <p className="font-bold text-[var(--plix-green)] text-sm">₹{item.price * item.quantity}</p>
-
-        {/* Stepper */}
-        <div className="flex items-center border border-gray-200 rounded-full overflow-hidden text-sm">
-          <button onClick={() => updateQuantity(item.id, item.quantity - 1)}
-            className="w-8 h-8 flex items-center justify-center hover:bg-[var(--plix-sage)] transition-colors font-bold">
-            −
-          </button>
-          <span className="w-7 text-center font-semibold">{item.quantity}</span>
-          <button onClick={() => updateQuantity(item.id, item.quantity + 1)}
-            className="w-8 h-8 flex items-center justify-center hover:bg-[var(--plix-sage)] transition-colors font-bold">
-            +
-          </button>
-        </div>
-
-        {/* Remove */}
-        <button onClick={() => removeItem(item.id)}
-          className="text-[var(--plix-pink)] hover:text-red-500 transition-colors text-xs font-medium">
-          Remove
-        </button>
+      {/* Price + Remove */}
+      <div className="text-right">
+         <p className="h3 text-[var(--ink)] mb-1">₹{item.price * item.quantity}</p>
+         <button 
+           onClick={() => removeItem(item.id)}
+           className="micro font-bold text-black/30 hover:text-[var(--p-500)] transition-colors"
+         >
+           Remove ×
+         </button>
       </div>
     </motion.div>
   );

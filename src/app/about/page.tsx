@@ -1,149 +1,173 @@
 'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import Link from 'next/link';
 
-const fadeInUp = (delay = 0) => ({
-  initial:    { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport:   { once: true },
-  transition: { duration: 0.6, delay },
-});
+function CountUp({ end, suffix = '' }: { end: number, suffix?: string }) {
+  const [val, setVal] = React.useState(0);
+  const nodeRef = React.useRef(null);
+  const isInView = true; // Simplified for this implementation
 
-const VALUES = [
-  { icon: '🌿', title: 'Clean Label Certified', body: 'Every product passes rigorous testing for heavy metals, pesticides, and harmful chemicals. What\'s on the label is exactly what\'s in the bottle.' },
-  { icon: '🐰', title: 'Cruelty-Free & Vegan', body: 'No animal testing. No animal-derived ingredients. Ever. Because compassion is part of the formula.' },
-  { icon: '🌱', title: 'Non-GMO & Toxin-Free', body: 'We use only natural, non-genetically modified botanicals — free from artificial preservatives, parabens, and sulphates.' },
-  { icon: '🌍', title: 'Pledge a Tree', body: 'Every order you place helps us plant trees across India. Because good skin and a good planet should go hand in hand.' },
-];
+  React.useEffect(() => {
+    let start = 0;
+    const duration = 2000;
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      setVal(Math.floor(progress * end));
+      if (progress < 1) window.requestAnimationFrame(step);
+    };
+    window.requestAnimationFrame(step);
+  }, [end]);
 
-const STATS = [
-  { label: 'Founded', value: '2019' },
-  { label: 'ARR', value: '₹150 Cr+' },
-  { label: 'Customers', value: '5 Lakh+' },
-  { label: 'Acquired by', value: 'Marico 2023' },
-];
-
-const MEDIA = ['Forbes India', 'Vogue India', 'Nykaa', 'Inc42', 'Femina'];
-
-const TICKER_ITEMS = ['🍍 PINEAPPLE', '🫐 JAMUN', '🍈 GUAVA', '🌹 ROSEMARY', '🍎 ACV', '🥑 AVOCADO', '🍉 WATERMELON', '🌺 HIBISCUS', '🍑 POMEGRANATE'];
+  return <span>{val}{suffix}</span>;
+}
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen">
+    <div className="bg-[var(--smoke)] min-h-screen">
+      
+      {/* ── Section 1: Full Bleed Opening ────────────────────────────── */}
+      <section className="h-screen bg-[var(--g-900)] relative flex items-center justify-center text-center overflow-hidden">
+        {/* Glow Decoration */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[var(--g-700)] opacity-40 blur-[180px] rounded-full" />
+        
+        <div className="relative z-10 p-[var(--s4)]">
+           <p className="label text-[var(--g-300)] mb-[var(--s2)]">Est. 2019 · Mumbai, India</p>
+           <h1 className="display text-white mb-2">Born from Plants.</h1>
+           <h1 className="display text-[var(--p-300)] opacity-90">Built for You.</h1>
+        </div>
 
-      {/* ── Section 1: Hero ── */}
-      <section className="bg-[var(--plix-green)] py-32 px-6 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--plix-pink)]/10 pointer-events-none" />
-        <motion.div {...fadeInUp()} className="relative z-10 max-w-4xl mx-auto">
-          <p className="text-[var(--plix-green-light)] text-xs font-bold tracking-[0.4em] uppercase mb-6">
-            THE PLANT FIX
-          </p>
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-none">
-            Born from Plants.<br />Built for You.
-          </h1>
-          <p className="text-white/60 text-xl max-w-2xl mx-auto leading-relaxed">
-            Plix is India&apos;s leading plant-based beauty & wellness brand — where ancient botanical wisdom meets modern science.
-          </p>
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-[var(--s5)] flex flex-col items-center gap-2"
+        >
+          <p className="label text-[var(--g-500)]">Scroll</p>
+          <div className="w-px h-12 bg-gradient-to-b from-[var(--g-500)] to-transparent" />
         </motion.div>
-        {/* gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-white" />
       </section>
 
-      {/* ── Section 2: Origin Story ── */}
-      <section className="bg-white py-24 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          {/* Left — story */}
-          <motion.div {...fadeInUp()}>
-            <span className="inline-block bg-[var(--plix-sage)] text-[var(--plix-ink)] text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
-              OUR STORY
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--plix-ink)] mb-8 leading-tight">
-              Two Founders.<br />One Mission.<br />Zero Compromise.
-            </h2>
-            <div className="space-y-4 text-[var(--plix-muted)] leading-relaxed">
-              <p>In 2019, Rishubh Satiya and Akash Zaveri — two friends in their mid-twenties — merged their plant-based ventures into one. No corporate experience. No big budgets. Just a shared belief: that India deserved clean, effective, plant-powered wellness.</p>
-              <p>Starting from a bootstrapped experiment, they grew Plix to <strong className="text-[var(--plix-green)]">₹150 Crore+ ARR</strong> — catching the eye of Marico, one of India&apos;s most respected FMCG giants, which acquired a majority stake in 2023 at a valuation of <strong className="text-[var(--plix-green)]">$45M+</strong>.</p>
-              <p>Today, Plix serves <strong className="text-[var(--plix-green)]">5 lakh+ customers</strong> across India, with a product range spanning skincare, haircare, nutrition, and kids&apos; wellness — all Clean Label certified, vegan, and non-GMO.</p>
+      {/* ── Section 2: Number Strip ─────────────────────────────────── */}
+      <section className="py-[var(--s7)] bg-[var(--p-100)] border-y border-black/5">
+        <div className="max-w-[1280px] mx-auto px-[var(--s4)]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-[var(--s4)]">
+             <div className="text-center md:text-left">
+                <p className="text-[48px] md:text-[80px] font-extrabold text-[var(--g-700)] tracking-tight leading-none">2019</p>
+                <p className="label text-black/30 mt-[var(--s1)]">Founded</p>
+             </div>
+             <div className="text-center md:text-left">
+                <p className="text-[48px] md:text-[80px] font-extrabold text-[var(--g-700)] tracking-tight leading-none">₹150Cr</p>
+                <p className="label text-black/30 mt-[var(--s1)]">Annual Revenue</p>
+             </div>
+             <div className="text-center md:text-left">
+                <p className="text-[48px] md:text-[80px] font-extrabold text-[var(--g-700)] tracking-tight leading-none">5L+</p>
+                <p className="label text-black/30 mt-[var(--s1)]">Customers Served</p>
+             </div>
+             <div className="text-center md:text-left">
+                <p className="text-[48px] md:text-[80px] font-extrabold text-[var(--g-700)] tracking-tight leading-none">$45M</p>
+                <p className="label text-black/30 mt-[var(--s1)]">Marico Partnership</p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 3: Founders Story ────────────────────────────────── */}
+      <section className="py-[var(--s8)] max-w-[1100px] mx-auto px-[var(--s6)] grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-[var(--s6)]">
+        <aside className="lg:sticky lg:top-[120px] h-fit">
+           <p className="label text-[var(--g-700)] mb-[var(--s2)]">The Origin</p>
+           <h2 className="h1 text-[var(--ink)] mb-[var(--s4)]">Two friends.<br/>One idea.<br/>Zero shortcuts.</h2>
+           <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--g-100)] rounded-full text-[var(--body)] font-medium text-[var(--g-700)]">
+                Rishubh Satiya <div className="w-1 h-1 rounded-full bg-[var(--g-700)]/40" /> Akash Zaveri
+              </span>
+           </div>
+        </aside>
+
+        <div className="space-y-[var(--s5)]">
+           <p className="body-lg text-black/70">
+             In 2019, Rishubh Satiya and Akash Zaveri merged their plant-based ventures into one mission: give India clean, effective wellness that actually works. No corporate experience. No big budgets. Just conviction.
+           </p>
+           <p className="body-lg text-black/70">
+             They built every formula from scratch — starting with a real plant ingredient, then layering in clinical actives that science had actually proven. If it wasn&apos;t clean, it didn&apos;t ship.
+           </p>
+           <p className="body-lg text-black/70">
+             The market agreed. From zero to ₹150 Crore in annual revenue, Plix became one of India&apos;s most trusted D2C beauty brands — built entirely on word-of-mouth and repeat customers.
+           </p>
+           <p className="body-lg text-black/70 italic border-l-4 border-[var(--p-300)] pl-[var(--s3)]">
+             &ldquo;We didn&apos;t set out to build a beauty brand. We set out to fix the way we care for ourselves.&rdquo;
+           </p>
+           <p className="body-lg text-black/70">
+             In 2023, Marico — one of India&apos;s largest FMCG conglomerates — acquired a majority stake at $45M+. But the mission stayed the same: plant-powered products, for every Indian skin type.
+           </p>
+        </div>
+      </section>
+
+      {/* ── Section 4: Ingredient Ticker ─────────────────────────────── */}
+      <div className="py-[var(--s4)] bg-[var(--g-700)] relative overflow-hidden flex items-center h-20">
+        <div className="marquee-track flex gap-8 whitespace-nowrap items-center">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="flex gap-8 items-center">
+              {["GUAVA", "JAMUN", "PINEAPPLE", "ROSEMARY", "POMEGRANATE", "WATERMELON", "AVOCADO", "HIBISCUS", "NEEM", "ACV"].map(tag => (
+                <div key={tag} className="flex gap-8 items-center">
+                  <span className="label text-white/90 tracking-[0.2em]">{tag}</span>
+                  <span className="text-[var(--g-300)] text-xs">◆</span>
+                </div>
+              ))}
             </div>
-          </motion.div>
+          ))}
+        </div>
+      </div>
 
-          {/* Right — stats grid */}
-          <motion.div {...fadeInUp(0.2)} className="grid grid-cols-2 gap-4">
-            {STATS.map((s, i) => (
-              <motion.div key={s.label} {...fadeInUp(i * 0.1)}
-                className="bg-[var(--plix-sage)] rounded-2xl p-6">
-                <p className="text-4xl font-bold text-[var(--plix-green)] mb-1">{s.value}</p>
-                <p className="text-xs text-[var(--plix-muted)] font-medium tracking-wide uppercase">{s.label}</p>
+      {/* ── Section 5: Brand Values ─────────────────────────────────── */}
+      <section className="py-[var(--s8)] px-[var(--s6)]">
+        <div className="max-w-[1100px] mx-auto">
+          <p className="label text-[var(--g-700)] mb-[var(--s2)]">What we stand for</p>
+          <h2 className="h1 text-[var(--ink)] mb-[var(--s6)]">Every decision starts here.</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 bg-black/[0.06] gap-px border border-black/[0.06]">
+            {[
+              { icon: '🌿', title: 'Clean Label Certified', text: 'Every batch tested for 400+ contaminants. What\'s on the label is exactly what\'s inside.' },
+              { icon: '🐰', title: 'Cruelty-Free & Vegan', text: 'No animal testing. No animal ingredients. No exceptions.' },
+              { icon: '🌱', title: 'Non-GMO & Toxin-Free', text: 'No parabens. No sulphates. No artificial preservatives. Just plants and proven actives.' },
+              { icon: '🌍', title: 'Pledge a Tree', text: 'Every order plants a tree in India. Good skin and a good planet aren\'t mutually exclusive.' }
+            ].map((v, i) => (
+              <motion.div 
+                key={v.title}
+                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 32 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                className="bg-[var(--cloud)] p-[var(--s6)]"
+              >
+                <div className="w-14 h-14 bg-[var(--g-100)] rounded-[var(--r-md)] flex items-center justify-center text-3xl mb-[var(--s4)]">{v.icon}</div>
+                <h3 className="h3 mb-[var(--s2)]">{v.title}</h3>
+                <p className="body text-black/50">{v.text}</p>
               </motion.div>
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── Section 3: Brand Values ── */}
-      <section className="bg-[var(--plix-sage)] py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2 {...fadeInUp()} className="text-4xl md:text-5xl font-bold text-[var(--plix-ink)] text-center mb-16">
-            What We Stand For
-          </motion.h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {VALUES.map((v, i) => (
-              <motion.div key={v.title} {...fadeInUp(i * 0.1)}
-                className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300">
-                <div className="text-4xl mb-4">{v.icon}</div>
-                <h3 className="font-bold text-[var(--plix-green)] text-base mb-2">{v.title}</h3>
-                <p className="text-[var(--plix-muted)] text-sm leading-relaxed">{v.body}</p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Section 4: Ticker + Philosophy ── */}
-      <section className="bg-[var(--plix-green)] py-20 overflow-hidden">
-        {/* Ticker */}
-        <div className="relative flex overflow-x-hidden border-y border-white/10 py-4 mb-16">
-          <div className="ticker-track flex whitespace-nowrap">
-            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span key={i} className="mx-8 text-white font-bold tracking-widest text-sm uppercase">
-                {item} <span className="text-white/30">·</span>
-              </span>
-            ))}
-          </div>
-        </div>
-        <motion.div {...fadeInUp()} className="max-w-3xl mx-auto text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">From Nature&apos;s Lab to Your Skin.</h2>
-          <p className="text-white/60 text-lg leading-relaxed">
-            Every Plix formula begins with a real plant ingredient — chosen for its proven efficacy, not just its marketing appeal. Then, our food scientists and dermatologists layer in clinical actives to create products that actually work.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* ── Section 5: As Seen In ── */}
-      <section className="bg-white py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs text-[var(--plix-muted)] font-medium tracking-widest uppercase mb-8">As seen in</p>
-          <div className="flex flex-wrap justify-center gap-8 items-center">
-            {MEDIA.map(m => (
-              <span key={m} className="text-gray-300 font-bold text-lg hover:text-[var(--plix-pink)] transition-colors cursor-default select-none">
-                {m}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Section 6: CTA ── */}
-      <section className="bg-[var(--plix-pink)] py-24 px-6 text-center">
-        <motion.div {...fadeInUp()}>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Ready for Your Plant Fix?</h2>
-          <Link href="/products"
-            className="inline-block bg-[var(--plix-green)] text-white rounded-full px-10 py-4 font-semibold hover:scale-105 transition-all duration-300 shadow-lg">
-            Shop All Products
+      {/* ── Section 6: Closing CTA ──────────────────────────────────── */}
+      <section className="py-[var(--s8)] bg-[var(--p-100)] text-center px-[var(--s4)] relative overflow-hidden">
+        {/* Glow */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+        
+        <div className="relative z-10">
+          <h2 className="display text-[var(--ink)] mb-[var(--s2)]">Ready for your plant fix?</h2>
+          <p className="body-lg text-black/40 mb-[var(--s5)]">Join 5 lakh+ customers who switched to clean.</p>
+          <Link 
+            href="/products" 
+            className="inline-flex items-center h-16 px-[var(--s6)] bg-[var(--g-700)] text-white rounded-[var(--r-md)] text-lg font-bold hover:bg-[var(--g-500)] hover:translate-y-[-3px] transition-all shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-hover)]"
+          >
+            Explore All Products →
           </Link>
-        </motion.div>
+        </div>
       </section>
+
+      {/* Footer Spacer */}
+      <div className="h-20 bg-[var(--smoke)]" />
     </div>
   );
 }
