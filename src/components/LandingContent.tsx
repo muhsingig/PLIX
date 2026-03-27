@@ -100,8 +100,16 @@ export default function LandingContent() {
                  <p className="text-[9px] uppercase tracking-widest text-[#2a4519]/60 font-bold max-w-[100px] text-right">Discover your ritual</p>
                </div>
                {/* Abstract decorative element (representing the spirograph flower) */}
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] opacity-20 group-hover:opacity-30 transition-organic bg-[url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"40\" fill=\"none\" stroke=\"%232a4519\" stroke-width=\"1\" stroke-dasharray=\"4 4\"/></svg>')] bg-cover mix-blend-color-burn" />
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] opacity-30 group-hover:scale-110 transition-organic duration-700 bg-[url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><polygon points=\"50,10 90,90 10,90\" fill=\"none\" stroke=\"%232a4519\" stroke-width=\"0.5\"/></svg>')] bg-cover mix-blend-color-burn" />
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] opacity-20 group-hover:opacity-30 transition-organic mix-blend-color-burn pointer-events-none">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-full h-full">
+                   <circle cx="50" cy="50" r="40" fill="none" stroke="#2a4519" strokeWidth="1" strokeDasharray="4 4" />
+                 </svg>
+               </div>
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] opacity-30 group-hover:scale-110 transition-organic duration-700 mix-blend-color-burn pointer-events-none">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-full h-full">
+                   <polygon points="50,10 90,90 10,90" fill="none" stroke="#2a4519" strokeWidth="0.5" />
+                 </svg>
+               </div>
                
                <div className="relative z-10 w-12 h-12 bg-[#2a4519] rounded-full flex items-center justify-center text-[#90be6d] group-hover:bg-background group-hover:text-[#2a4519] transition-organic mt-auto">
                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
