@@ -1,26 +1,58 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useCart } from '@/context/CartContext';
+import { Product } from '@/lib/products';
 
 export default function ShopPage() {
+  const { addItem } = useCart();
+  const [addedIds, setAddedIds] = useState<number[]>([]);
+
+  const handleAdd = (product: any) => {
+    // Map the local UI properties correctly to match the Product schema the Cart expects
+    const payload: Product = {
+      id: product.id,
+      name: product.name,
+      category: product.category || 'Serums',
+      concern: product.concern || 'Brightening',
+      ingredients: product.ingredients || ['Active Botanicals', 'Hyaluronic Acid'],
+      price: product.price,
+      originalPrice: product.originalPrice,
+      accentColor: product.accentColor,
+    };
+    addItem(payload);
+    setAddedIds(prev => [...prev, product.id]);
+    setTimeout(() => {
+      setAddedIds(prev => prev.filter(id => id !== product.id));
+    }, 2000);
+  };
+
   const products = [
     {
       id: 1,
       name: 'Guava Glow Serum',
-      price: '$34',
+      price: 410,
+      originalPrice: 575,
+      accentColor: '#F4A0A8',
+      category: 'Serums', concern: 'Brightening',
+      ingredients: ["10% Vit C", "ALA", "Hyaluronic Acid"],
       rating: '4.9',
       reviews: '2.1k reviews',
       badge: 'BESTSELLER',
       badgeColor: 'bg-primary-container text-on-surface',
       desc: 'Niacinamide-rich formula for instant brightening and deep hydration.',
-      bg: '#F3E5A6', // Using inline styles for specific product background vibrancy since it's dynamic imagery
+      bg: '#F3E5A6',
       img: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
-      id: 2,
+      id: 8,
       name: 'Juicy Cleanser',
-      price: '$28',
+      price: 275,
+      originalPrice: 375,
+      accentColor: '#0F2C41',
+      category: 'Cleansers', concern: 'Brightening',
+      ingredients: ["Lime Extract", "Salicylic Acid", "Glycerin"],
       rating: '4.8',
       reviews: '1.4k reviews',
       badge: null,
@@ -29,9 +61,13 @@ export default function ShopPage() {
       img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
-      id: 3,
+      id: 15,
       name: 'Daily Glow',
-      price: '$42',
+      price: 450,
+      originalPrice: 600,
+      accentColor: '#90be6d',
+      category: 'Nutrition', concern: 'Acne',
+      ingredients: ["Aloe Vera", "Zinc", "Vitamin B"],
       rating: '5.0',
       reviews: '890 reviews',
       badge: 'WELLNESS',
@@ -41,9 +77,13 @@ export default function ShopPage() {
       img: 'https://images.unsplash.com/photo-1542614945-812e96ebcc7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
-      id: 4,
+      id: 16,
       name: 'Botanical Night Oil',
-      price: '$39',
+      price: 899,
+      originalPrice: 1250,
+      accentColor: '#3A6C58',
+      category: 'Serums', concern: 'Anti-Ageing',
+      ingredients: ["Rosehip Oil", "Squalane", "Vitamin E"],
       rating: '4.7',
       reviews: '1.1k reviews',
       badge: null,
@@ -150,7 +190,7 @@ export default function ShopPage() {
               <div className="px-2 flex-grow flex flex-col relative">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-[17px] font-sans font-bold text-on-background tracking-tight leading-tight pr-4">{product.name}</h3>
-                  <span className="text-[15px] font-bold text-on-background/50 mt-0.5">{product.price}</span>
+                  <span className="text-[15px] font-bold text-on-background/50 mt-0.5">₹{product.price}</span>
                 </div>
                 
                 <div className="flex items-center gap-1 mb-4 text-secondary">
@@ -162,10 +202,27 @@ export default function ShopPage() {
                 <p className="text-[12px] text-on-background/60 font-medium leading-relaxed mb-8">{product.desc}</p>
 
                 <div className="mt-auto">
-                  <button className="w-full h-[48px] bg-surface-container-high text-primary rounded-full flex items-center justify-center gap-2 text-[13px] font-bold hover:bg-primary z-10 hover:text-on-primary transition-organic shadow-sm relative overflow-hidden group/btn">
+                  <button 
+                    onClick={() => handleAdd(product)}
+                    disabled={addedIds.includes(product.id)}
+                    className={`w-full h-[48px] rounded-full flex items-center justify-center gap-2 text-[13px] font-bold transition-organic shadow-sm relative overflow-hidden group/btn ${
+                      addedIds.includes(product.id) 
+                      ? 'bg-secondary text-on-primary' 
+                      : 'bg-surface-container-high text-primary hover:bg-primary z-10 hover:text-on-primary'
+                    }`}
+                  >
                     <span className="relative z-10 flex items-center justify-center gap-2">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                      Add to Cart
+                      {addedIds.includes(product.id) ? (
+                        <>
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                          Added
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                          Add to Cart
+                        </>
+                      )}
                     </span>
                   </button>
                 </div>
