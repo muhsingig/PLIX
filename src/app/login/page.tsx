@@ -1,138 +1,105 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   return (
-    <div className="fixed inset-0 z-[200] overflow-y-auto">
-      {/* ── [BACKGROUND] radial gradient & bloom ────────────────────────── */}
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_right,_#FDE8EC_0%,_#FDF0EE_100%)]">
-        {/* Soft light bloom effects */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[#F4A0A8] opacity-20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#5DBB63] opacity-5 rounded-full blur-[140px]" />
+    <div className="min-h-screen relative flex flex-col pt-12 pb-8 overflow-hidden bg-background">
+      
+      {/* Background Radial Core */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-surface-container-low)_0%,var(--color-surface-container-highest)_100%)] pointer-events-none opacity-50" />
+
+      {/* Decorative Floating Asset (Bottom Right) */}
+      <div className="absolute -bottom-8 -right-8 md:bottom-20 md:right-32 w-[240px] h-[240px] md:w-[320px] h-[320px] bg-secondary-container rounded-xl rotate-[-5deg] shadow-ambient-lg z-20 pointer-events-none border-[12px] border-surface-container-lowest overflow-hidden flex items-center justify-center transition-organic hover:rotate-0">
+        <div 
+          className="w-[150%] h-[150%] bg-cover bg-center rotate-[5deg] absolute"
+          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80")' }}
+        />
+        <div className="absolute inset-0 bg-secondary/10" />
       </div>
 
-      <div className="relative min-h-screen flex flex-col justify-between py-12 px-6">
-        
-        {/* ── [HEADER] ────────────────────────────────────────────────── */}
-        <div className="w-full flex justify-center mb-12">
-          <Link href="/" className="text-4xl font-black text-[var(--p-700)] tracking-tighter hover:scale-105 transition-transform">
-            PLIX
-          </Link>
-        </div>
+      {/* Basic Top Navigation */}
+      <div className="relative z-10 w-full flex justify-center mb-8 md:mb-12">
+        <Link href="/" className="text-[28px] font-sans font-black tracking-tighter text-primary">
+          PLIX
+        </Link>
+      </div>
 
-        {/* ── [LOGIN CARD] ────────────────────────────────────────────── */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-[var(--cloud)] rounded-[32px] p-8 md:p-12 w-full max-w-md mx-auto shadow-[var(--shadow-float)] border border-black/5"
-        >
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-serif font-bold text-[var(--ink)] mb-2">Welcome Back</h1>
-            <p className="text-black/50 italic font-medium">Step back into your glow journey.</p>
-          </div>
+      {/* Main Login Card Wrapper */}
+      <div className="flex-1 flex items-center justify-center w-full px-6 relative z-30 transition-organic">
+        <div className="w-full max-w-[480px] bg-surface-container-lowest rounded-xl p-10 md:p-14 shadow-ambient flex flex-col items-center ghost-border">
+          
+          <h1 className="display-lg text-primary mb-3">Welcome Back</h1>
+          <p className="text-[15px] font-medium text-on-background/50 mb-10">Step back into your glow journey.</p>
 
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+          <form className="w-full space-y-6" onSubmit={e => e.preventDefault()}>
             
             {/* Email Field */}
-            <div>
-              <label className="block text-xs font-bold text-[var(--ink)] uppercase tracking-widest mb-2 pl-4">
-                Email Address
-              </label>
+            <div className="space-y-2">
+              <label className="label-md text-primary ml-4">Email Address</label>
               <div className="relative">
                 <input 
                   type="email" 
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
                   placeholder="hello@wellness.com"
-                  className="w-full h-14 bg-[var(--p-100)]/50 rounded-full pl-6 pr-12 text-sm font-bold text-[var(--ink)] focus:outline-none focus:ring-2 focus:ring-[var(--p-500)] placeholder:text-black/30 placeholder:font-medium placeholder:italic transition-shadow"
+                  className="w-full h-[56px] rounded-full bg-surface-container-low px-6 text-[14px] outline-none placeholder:text-on-background/30 text-on-background font-medium ghost-border focus:border-outline-variant transition-organic shadow-inner"
                 />
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--p-700)]/40 pointer-events-none">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <div className="absolute right-5 top-1/2 -translate-y-1/2 text-on-background/20">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
                 </div>
               </div>
             </div>
 
             {/* Password Field */}
-            <div>
-              <div className="flex justify-between items-end mb-2 px-4">
-                <label className="block text-xs font-bold text-[var(--ink)] uppercase tracking-widest">
-                  Password
-                </label>
-                <Link href="#" className="text-xs font-bold text-[var(--p-700)] hover:text-[var(--p-500)] underline">
-                  Forgot Password?
-                </Link>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center ml-4 mr-4">
+                <label className="label-md text-primary">Password</label>
+                <Link href="#" className="label-md text-primary hover:text-primary-container transition-organic">Forgot Password?</Link>
               </div>
               <div className="relative">
                 <input 
                   type="password" 
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full h-14 bg-[var(--p-100)]/50 rounded-full pl-6 pr-12 text-lg font-black text-[var(--ink)] tracking-widest focus:outline-none focus:ring-2 focus:ring-[var(--p-500)] placeholder:text-black/30 transition-shadow"
+                  className="w-full h-[56px] rounded-full bg-surface-container-low px-6 text-[20px] outline-none placeholder:text-on-background/30 placeholder:tracking-widest text-on-background font-medium ghost-border focus:border-outline-variant transition-organic shadow-inner"
                 />
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--p-700)]/40 pointer-events-none">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                <div className="absolute right-5 top-1/2 -translate-y-1/2 text-on-background/20">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
                 </div>
               </div>
             </div>
 
-            {/* Login CTA */}
-            <div className="pt-2">
-              <button 
-                type="submit"
-                className="w-full h-14 bg-[var(--p-700)] text-white rounded-full font-bold text-lg hover:bg-[var(--ink)] transition-colors shadow-lg"
-              >
-                Login
-              </button>
-            </div>
-            
+            <button className="w-full h-[60px] bg-primary text-on-primary rounded-full font-bold text-[16px] hover:bg-primary-container hover:text-on-surface transition-organic shadow-ambient mt-8 mb-4">
+              Login
+            </button>
+
           </form>
 
-          <div className="flex items-center gap-4 my-8">
-            <div className="h-px bg-black/5 flex-1" />
-            <span className="text-xs font-medium text-black/30">New to the Plix ritual?</span>
-            <div className="h-px bg-black/5 flex-1" />
-          </div>
-
-          <button className="w-full h-14 border border-[var(--g-500)] text-[var(--g-700)] rounded-full font-bold hover:bg-[var(--g-500)] hover:text-white transition-colors uppercase tracking-widest text-sm shadow-sm">
+          <div className="w-full h-px bg-outline-variant/20 my-8" />
+          
+          <p className="text-[14px] text-on-background/50 font-medium mb-5">New to the Plix ritual?</p>
+          <Link href="/register" className="w-[200px] h-[48px] bg-secondary text-on-primary rounded-full flex items-center justify-center font-bold text-[14px] hover:bg-secondary-fixed-dim transition-organic shadow-float">
             Create Account
-          </button>
-        </motion.div>
-
-        {/* ── [BOTTOM AREA] ────────────────────────────────────────────── */}
-        <div className="w-full max-w-md mx-auto text-center mt-12 mb-auto">
-          <p className="italic text-sm text-black/40 font-medium">
-            "Radiance is not just skin deep; it's the energy you bring to the world."
-          </p>
+          </Link>
+          
         </div>
-
-        {/* ── [FOOTER] ─────────────────────────────────────────────────── */}
-        <div className="w-full max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center text-[10px] font-bold text-black/40 tracking-widest mt-12">
-          <p className="mb-4 sm:mb-0">© 2024 PLIX LIFE. RADIANT EDITORIAL WELLNESS.</p>
-          <div className="flex gap-4">
-            <Link href="#" className="hover:text-[var(--p-700)] transition-colors">PRIVACY POLICY</Link>
-            <span>·</span>
-            <Link href="#" className="hover:text-[var(--p-700)] transition-colors">TERMS OF SERVICE</Link>
-            <span>·</span>
-            <Link href="#" className="hover:text-[var(--p-700)] transition-colors">CONTACT US</Link>
-          </div>
-        </div>
-
-        {/* Visual Product Image Float */}
-        <div className="fixed bottom-0 right-[-2%] w-64 h-64 rounded-[40px] shadow-2xl overflow-hidden pointer-events-none rotate-12 opacity-90 hidden md:block z-[-1]">
-          <div 
-            className="w-full h-full bg-cover bg-center mix-blend-multiply"
-            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")' }}
-          />
-        </div>
-
       </div>
+
+      {/* Quote */}
+      <div className="relative z-10 w-full flex justify-center mt-12 mb-8 md:mb-0 text-center px-6">
+        <p className="text-[14px] text-on-background/30 italic font-medium max-w-sm leading-relaxed">
+          "Radiance is not just skin deep; it's the energy you bring to the world."
+        </p>
+      </div>
+
+      {/* Footer */}
+      <div className="relative z-10 w-full flex flex-col md:flex-row justify-between items-center px-6 md:px-12 mt-auto pt-8">
+        <span className="text-[11px] font-bold text-on-background/40 mb-4 md:mb-0">© 2024 Plix Life. Radiant Editorial Wellness.</span>
+        <div className="flex gap-6 uppercase tracking-[0.15em] text-[10px] font-black text-primary/60">
+          <Link href="#" className="hover:text-primary transition-organic">Privacy Policy</Link>
+          <Link href="#" className="hover:text-primary transition-organic">Terms of Service</Link>
+          <Link href="#" className="hover:text-primary transition-organic">Contact Us</Link>
+        </div>
+      </div>
+
     </div>
   );
 }

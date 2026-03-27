@@ -1,248 +1,195 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 
 export default function CartPage() {
-  const [quantities, setQuantities] = useState({ guava: 1, dewy: 1 });
-
-  const updateQuantity = (item: string, delta: number) => {
-    setQuantities(prev => ({
-      ...prev,
-      [item]: Math.max(1, prev[item as keyof typeof prev] + delta)
-    }));
-  };
-
   return (
-    <div className="bg-[var(--smoke)] min-h-screen pt-32 pb-20 font-sans text-[var(--ink)]">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <div className="bg-background min-h-screen font-body text-on-background pt-32 pb-24">
+      <div className="max-w-[1100px] mx-auto px-6">
         
-        {/* ── [BASKET - LEFT COLUMN] ──────────────────────────────────── */}
-        <div className="col-span-1 lg:col-span-7 xl:col-span-8">
-          <div className="flex justify-between items-end border-b border-black/10 pb-6 mb-8">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-[var(--ink)]">Your Basket</h1>
-            <span className="text-sm font-bold text-black/50 uppercase tracking-widest">2 Items</span>
-          </div>
+        {/* Header */}
+        <div className="flex justify-between items-end mb-8">
+          <h1 className="display-lg text-primary tracking-tighter">Your Basket</h1>
+          <span className="label-md text-on-background/40 mb-2">2 Items</span>
+        </div>
 
-          <div className="flex flex-col gap-6 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          
+          {/* Left Column (Items & Promos) */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
             
-            {/* Product Card 1 */}
-            <div className="bg-[var(--cloud)] rounded-[24px] p-4 flex flex-col sm:flex-row gap-6 shadow-sm border border-black/5 items-center sm:items-stretch">
-              {/* Thumbnail */}
-              <div 
-                className="w-32 h-32 rounded-2xl bg-cover bg-center flex-shrink-0"
-                style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")' }}
-              />
+            {/* ITEM 1 */}
+            <div className="bg-surface-container-lowest rounded-xl p-6 pr-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start shadow-ambient relative transition-organic hover:scale-[1.01]">
+              {/* Product Visual */}
+              <div className="w-[120px] h-[120px] rounded-md bg-secondary-container flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")' }}
+                />
+              </div>
               
-              {/* Info & Actions */}
-              <div className="flex-1 flex flex-col justify-between py-2 w-full">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-lg font-bold">Guava Glow Serum</h3>
-                    <p className="text-sm text-black/50">Brightening & Radiant Hydration</p>
-                  </div>
-                  <div className="text-xl font-bold text-[var(--p-700)]">$34.00</div>
-                </div>
-
-                <div className="flex justify-between items-center mt-4 sm:mt-0">
+              {/* Info */}
+              <div className="flex-1 mt-2">
+                <h3 className="headline-lg text-on-background mb-1">Guava Glow Serum</h3>
+                <p className="text-[13px] text-on-background/50 font-medium mb-5">Brightening & Radiant Hydration</p>
+                
+                <div className="flex items-center gap-6">
                   {/* Quantity Pill */}
-                  <div className="flex items-center bg-[var(--smoke)] rounded-full px-2 py-1 border border-black/5">
-                    <button 
-                      onClick={() => updateQuantity('guava', -1)}
-                      className="w-8 h-8 rounded-full flex justify-center items-center hover:bg-white text-black/50 transition-colors"
-                    >
-                      –
-                    </button>
-                    <span className="w-8 text-center text-sm font-bold">{quantities.guava}</span>
-                    <button 
-                      onClick={() => updateQuantity('guava', 1)}
-                      className="w-8 h-8 rounded-full flex justify-center items-center hover:bg-white transition-colors"
-                    >
-                      +
-                    </button>
+                  <div className="flex items-center bg-surface-container-high rounded-full px-4 py-1.5 ghost-border">
+                    <button className="w-6 h-6 flex items-center justify-center text-on-background/40 hover:text-on-background transition-organic font-medium">-</button>
+                    <span className="w-8 text-center text-[13px] font-bold">1</span>
+                    <button className="w-6 h-6 flex items-center justify-center text-on-background/40 hover:text-on-background transition-organic font-medium">+</button>
                   </div>
-                  
-                  {/* Remove */}
-                  <button className="text-xs font-bold text-[var(--p-700)] hover:text-[var(--p-500)] underline uppercase tracking-widest flex items-center gap-1 transition-colors">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                  {/* Remove text */}
+                  <button className="text-error text-[12px] font-bold flex items-center gap-1.5 hover:opacity-70 transition-organic">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                     Remove
                   </button>
                 </div>
               </div>
+
+              {/* Price */}
+              <div className="absolute top-8 right-10 sm:static sm:mt-2">
+                <span className="text-[24px] font-sans font-bold text-primary">$34.00</span>
+              </div>
             </div>
 
-            {/* Product Card 2 */}
-            <div className="bg-[var(--cloud)] rounded-[24px] p-4 flex flex-col sm:flex-row gap-6 shadow-sm border border-black/5 items-center sm:items-stretch">
-              <div 
-                className="w-32 h-32 rounded-2xl bg-cover bg-center flex-shrink-0"
-                style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")' }}
-              />
-              <div className="flex-1 flex flex-col justify-between py-2 w-full">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-lg font-bold">Dewy Moisturizer</h3>
-                    <p className="text-sm text-black/50">Plumping Hyaluronic Complex</p>
+            {/* ITEM 2 */}
+            <div className="bg-surface-container-lowest rounded-xl p-6 pr-10 flex flex-col sm:flex-row gap-8 items-center sm:items-start shadow-ambient relative transition-organic hover:scale-[1.01]">
+              {/* Product Visual */}
+              <div className="w-[120px] h-[120px] rounded-md bg-inverse-surface flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")' }}
+                />
+              </div>
+              
+              {/* Info */}
+              <div className="flex-1 mt-2">
+                <h3 className="headline-lg text-on-background mb-1">Dewy Moisturizer</h3>
+                <p className="text-[13px] text-on-background/50 font-medium mb-5">Plumping Hyaluronic Complex</p>
+                
+                <div className="flex items-center gap-6">
+                  {/* Quantity Pill */}
+                  <div className="flex items-center bg-surface-container-high rounded-full px-4 py-1.5 ghost-border">
+                    <button className="w-6 h-6 flex items-center justify-center text-on-background/40 hover:text-on-background transition-organic font-medium">-</button>
+                    <span className="w-8 text-center text-[13px] font-bold">1</span>
+                    <button className="w-6 h-6 flex items-center justify-center text-on-background/40 hover:text-on-background transition-organic font-medium">+</button>
                   </div>
-                  <div className="text-xl font-bold text-[var(--p-700)]">$28.00</div>
-                </div>
-
-                <div className="flex justify-between items-center mt-4 sm:mt-0">
-                  <div className="flex items-center bg-[var(--smoke)] rounded-full px-2 py-1 border border-black/5">
-                    <button 
-                      onClick={() => updateQuantity('dewy', -1)}
-                      className="w-8 h-8 rounded-full flex justify-center items-center hover:bg-white text-black/50 transition-colors"
-                    >
-                      –
-                    </button>
-                    <span className="w-8 text-center text-sm font-bold">{quantities.dewy}</span>
-                    <button 
-                      onClick={() => updateQuantity('dewy', 1)}
-                      className="w-8 h-8 rounded-full flex justify-center items-center hover:bg-white transition-colors"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <button className="text-xs font-bold text-[var(--p-700)] hover:text-[var(--p-500)] underline uppercase tracking-widest flex items-center gap-1 transition-colors">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                  {/* Remove text */}
+                  <button className="text-error text-[12px] font-bold flex items-center gap-1.5 hover:opacity-70 transition-organic">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                     Remove
                   </button>
                 </div>
               </div>
+
+              {/* Price */}
+              <div className="absolute top-8 right-10 sm:static sm:mt-2">
+                <span className="text-[24px] font-sans font-bold text-primary">$28.00</span>
+              </div>
             </div>
 
-          </div>
-
-          {/* ── [UPSELL + SHIPPING ROW] ──────────────────────────────────── */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Card A: Upsell */}
-            <div className="bg-[var(--g-500)] rounded-[24px] p-6 text-white shadow-lg relative overflow-hidden flex flex-col justify-between items-start min-h-[160px]">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-12 translate-x-12" />
-              <div className="z-10 bg-white/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block">
-                Special Offer
-              </div>
-              <div className="z-10">
-                <h4 className="font-serif text-2xl font-bold mb-4">Add a Jade Roller for 50% off?</h4>
-                <button className="bg-[var(--g-900)] text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[var(--ink)] transition-colors shadow-sm">
+            {/* Bottom Grid (Upsell & Progress) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+              
+              {/* Special Offer Card */}
+              <div className="bg-secondary-container rounded-xl p-8 shadow-ambient relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+                <div className="absolute -bottom-8 -right-8 w-40 h-40 opacity-30 text-secondary">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.05V13h8.05c-.09 4.39-3.66 8.02-8.05 8.05z"/><path d="M11 13V2.95c-4.39.09-8.02 3.66-8.05 8.05h8.05z"/><path d="M13 11V2.95c4.39.09 8.02 3.66 8.05 8.05H13z"/></svg>
+                </div>
+                
+                <div className="relative z-10 w-fit px-3 py-1 bg-secondary text-on-primary rounded-full label-md mb-4 shadow-sm">
+                  Special Offer
+                </div>
+                <h3 className="relative z-10 text-[24px] font-sans font-bold text-on-secondary-container leading-tight mb-6 tracking-tight">
+                  Add a Jade Roller for 50% off!
+                </h3>
+                <button className="relative z-10 w-fit px-6 py-2.5 bg-secondary text-on-primary font-bold rounded-full text-[13px] hover:bg-secondary-fixed-dim transition-organic shadow-float">
                   Add for $12
                 </button>
               </div>
-            </div>
 
-            {/* Card B: Shipping Progress */}
-            <div className="bg-[var(--cloud)] rounded-[24px] p-6 shadow-sm border-2 border-dashed border-[var(--g-300)] flex flex-col justify-center min-h-[160px]">
-              <h4 className="text-[var(--g-500)] font-bold text-lg mb-4 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>
-                Free Shipping Progress
-              </h4>
-              <div className="w-full bg-[var(--smoke)] h-3 rounded-full mb-3 overflow-hidden">
-                <div className="bg-gradient-to-r from-[var(--p-300)] to-[var(--g-500)] h-full w-[65%] rounded-full" />
-              </div>
-              <p className="text-sm font-medium text-black/60">
-                Only <strong className="text-[var(--ink)]">$18.00</strong> more to unlock free delivery!
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* ── [ORDER SUMMARY - RIGHT SIDEBAR] ────────────────────────── */}
-        <div className="col-span-1 lg:col-span-5 xl:col-span-4">
-          <div className="bg-[#FDE8E8] rounded-[32px] p-8 shadow-sm lg:sticky lg:top-32 border border-[#F4A0A8]/20">
-            <h2 className="text-2xl font-serif font-bold mb-6">Order Summary</h2>
-            
-            <div className="space-y-4 mb-6 text-sm font-medium">
-              <div className="flex justify-between text-black/70">
-                <span>Subtotal</span>
-                <span>$62.00</span>
-              </div>
-              <div className="flex justify-between text-black/70">
-                <span>Estimated Shipping</span>
-                <span>$5.99</span>
-              </div>
-              <div className="flex justify-between text-black/70">
-                <span>Estimated Tax</span>
-                <span>$0.00</span>
-              </div>
-            </div>
-            
-            <div className="border-t border-black/10 my-6" />
-
-            <div className="mb-6">
-              <label className="flex items-center gap-2 text-xs font-bold text-black/50 uppercase tracking-widest mb-3">
-                <svg className="w-4 h-4 text-[var(--g-500)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" /></svg>
-                Promo Code
-              </label>
-              <div className="flex gap-2">
-                <input 
-                  type="text" 
-                  defaultValue="GLOW20" 
-                  className="w-full bg-white rounded-full px-4 text-sm font-bold text-black/70 border border-[#F4A0A8]/40 focus:outline-none focus:ring-2 focus:ring-[var(--p-300)]"
-                />
-                <button className="bg-[var(--p-700)] text-white px-6 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[var(--p-500)] transition-colors">
-                  Apply
-                </button>
-              </div>
-            </div>
-
-            <div className="border-t border-black/10 my-6" />
-
-            <div className="flex justify-between items-end mb-2">
-              <span className="font-bold">Total</span>
-              <span className="text-4xl font-serif font-bold text-[var(--ink)]">$67.99</span>
-            </div>
-            <p className="text-[10px] font-bold text-black/40 text-right mb-8">
-              OR 4 INTEREST-FREE PAYMENTS OF $17.00
-            </p>
-
-            <button className="w-full h-14 bg-[var(--p-700)] text-white rounded-[20px] font-bold text-lg hover:bg-[#5C1B34] hover:-translate-y-1 transition-all shadow-[var(--shadow-card)] flex items-center justify-center gap-2 mb-6">
-              Proceed to Checkout <span>→</span>
-            </button>
-
-            {/* Payment Icons */}
-            <div className="flex justify-center gap-3">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="w-12 h-8 bg-white rounded-md flex items-center justify-center border border-black/5 shadow-sm">
-                  <span className="text-black/20 text-xs">◆</span>
+              {/* Free Shipping Progress */}
+              <div className="bg-surface-container-low ghost-border rounded-xl p-10 flex flex-col justify-center">
+                <h3 className="text-[20px] font-sans font-bold text-primary mb-5 tracking-tight">Free Shipping Progress</h3>
+                <div className="w-full h-3.5 bg-surface-container-highest rounded-full overflow-hidden shadow-inner mb-3">
+                  <div className="h-full bg-gradient-to-r from-primary to-primary-container rounded-full" style={{ width: '75%' }} />
                 </div>
-              ))}
+                <p className="text-[13px] text-on-background/50 font-medium">Only $18.00 more to unlock free delivery!</p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Right Column (Order Summary) */}
+          <div className="lg:col-span-5 relative">
+            <div className="bg-surface-container-high rounded-xl p-10 shadow-ambient-lg sticky top-32 ghost-border">
+              
+              <h2 className="headline-lg text-primary mb-10 tracking-tight">Order Summary</h2>
+              
+              <div className="space-y-4 text-[15px] text-on-background font-medium mb-8">
+                <div className="flex justify-between">
+                  <span className="opacity-80">Subtotal</span>
+                  <span className="font-bold">$62.00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="opacity-80">Estimated Shipping</span>
+                  <span className="font-bold">$5.99</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="opacity-80">Estimated Tax</span>
+                  <span className="font-bold">$0.00</span>
+                </div>
+              </div>
+
+              {/* Promo Code Input Block */}
+              <div className="bg-surface-container-lowest ghost-border rounded-md p-5 mb-8 shadow-ambient">
+                <div className="flex items-center gap-2 mb-3 text-[12px] font-bold text-on-background/60 uppercase tracking-[0.15em]">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.86L12 5.84zM7.5 14c-1.93 0-3.5 1.57-3.5 3.5S5.57 21 7.5 21 11 19.43 11 17.5 9.43 14 7.5 14zm0 5c-.83 0-1.5-.67-1.5-1.5S6.67 16 7.5 16s1.5.67 1.5 1.5S8.33 19 7.5 19zm9-5H13v7h3.5v-7zM21 21h-3v-7h3v7z"/></svg>
+                  Promo Code
+                </div>
+                <div className="flex items-center gap-3">
+                  <input 
+                    type="text" 
+                    placeholder="GLOW20" 
+                    className="flex-1 bg-surface-container-high h-[44px] rounded-full px-5 text-[14px] outline-none shadow-inner ghost-border placeholder:text-on-background/30 text-on-background font-medium transition-organic focus:border-outline-variant"
+                  />
+                  <button className="h-[44px] px-6 bg-primary text-on-primary text-[13px] font-bold rounded-full hover:bg-primary-container hover:text-on-surface transition-organic shadow-md">
+                    Apply
+                  </button>
+                </div>
+              </div>
+
+              {/* Ghost Divider */}
+              <div className="h-px w-full bg-outline-variant/20 mb-8" />
+
+              {/* Total Block */}
+              <div className="mb-10">
+                <div className="flex justify-between items-end mb-2">
+                  <span className="text-[20px] font-bold text-on-background">Total</span>
+                  <span className="display-lg text-primary leading-none">$67.99</span>
+                </div>
+                <p className="text-right label-md text-on-background/40">
+                  OR 4 INTEREST-FREE PAYMENTS OF $17.00
+                </p>
+              </div>
+
+              <button className="w-full h-[60px] bg-primary text-on-primary rounded-full flex items-center justify-center gap-3 text-[16px] font-bold hover:bg-primary-container hover:text-on-surface transition-organic shadow-ambient">
+                Proceed to Checkout
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </button>
+
+              <div className="flex justify-center gap-4 mt-8 opacity-40">
+                <div className="w-10 h-6 border border-on-background flex items-center justify-center rounded text-[10px] font-black">VISA</div>
+                <div className="w-10 h-6 border border-on-background flex items-center justify-center rounded text-[10px] font-black">MC</div>
+                <div className="w-10 h-6 border border-on-background flex items-center justify-center rounded text-[10px] font-black">AMEX</div>
+              </div>
+
             </div>
           </div>
         </div>
-
       </div>
-
-      {/* ── [FOOTER] ─────────────────────────────────────────────────── */}
-      <footer className="max-w-7xl mx-auto px-6 mt-32 border-t border-black/10 pt-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div className="col-span-1">
-            <h2 className="text-2xl font-black text-[var(--p-700)] tracking-tighter mb-2">PLIX</h2>
-            <p className="text-xs text-black/50 uppercase tracking-widest font-bold">Radiant Botanical Wellness</p>
-          </div>
-          <div>
-            <h4 className="font-bold text-[var(--ink)] uppercase text-xs tracking-widest mb-4">Explore</h4>
-            <ul className="space-y-3 text-sm text-black/60 font-medium">
-              <li><Link href="/shop" className="hover:text-[var(--p-700)]">Shop All</Link></li>
-              <li><Link href="/ingredients" className="hover:text-[var(--p-700)]">Ingredients</Link></li>
-              <li><Link href="/about" className="hover:text-[var(--p-700)]">Our Story</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-[var(--ink)] uppercase text-xs tracking-widest mb-4">Support</h4>
-            <ul className="space-y-3 text-sm text-black/60 font-medium">
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Shipping</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Returns</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-[var(--ink)] uppercase text-xs tracking-widest mb-4">Legal</h4>
-            <ul className="space-y-3 text-sm text-black/60 font-medium">
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Privacy</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Terms</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="text-center text-xs font-bold text-black/30 uppercase tracking-widest pb-8">
-          © {new Date().getFullYear()} Plix Life. All Rights Reserved.
-        </div>
-      </footer>
     </div>
   );
 }

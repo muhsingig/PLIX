@@ -1,37 +1,75 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@import "../styles/tokens.css";
+@theme {
+  --font-sans: var(--font-sans), 'Plus Jakarta Sans', sans-serif;
+  --font-body: var(--font-body), 'Manrope', sans-serif;
+
+  /* Radiant Editorial Colors */
+  --color-primary: #953f50;
+  --color-primary-container: #ff94a5;
+  --color-secondary: #3a6625;
+  --color-secondary-container: #bcf19f;
+  --color-secondary-fixed-dim: #afe393;
+  
+  --color-background: #fff4f5;
+  --color-surface: #fff4f5;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #ffecf1;
+  --color-surface-container-high: #ffd9e5;
+  --color-surface-container-highest: #ffd1e0;
+  
+  --color-inverse-surface: #230212;
+  
+  --color-on-background: #4a2133;
+  --color-on-surface: #4a2133;
+  --color-on-primary: #ffeff0;
+  --color-on-secondary-container: #305c1c;
+  --color-on-tertiary: #ffeefa;
+  
+  --color-outline-variant: #d89cb2;
+  --color-error: #b31b25;
+  
+  /* Radii */
+  --radius-xl: 3rem; /* 48px */
+  --radius-full: 9999px;
+  --radius-md: 1.5rem; /* 24px */
+  --radius-sm: 0.5rem; /* 8px */
+
+  /* Shadows (Ambient Gloom) */
+  --shadow-ambient: 0 40px 60px -15px rgba(74, 33, 51, 0.06);
+  --shadow-ambient-lg: 0 60px 80px -20px rgba(74, 33, 51, 0.08);
+  --shadow-float: 0 20px 40px -10px rgba(74, 33, 51, 0.12);
+}
 
 @layer base {
   body {
-    background-color: var(--smoke);
-    color: var(--ink);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: var(--body);
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    font-family: var(--font-body);
+    font-size: 1rem; /* body-lg */
     line-height: 1.65;
   }
 
-  h1, .h1 { font-family: var(--font-serif); font-size: var(--h1); font-weight: 700; letter-spacing: -0.03em; line-height: 1.0; }
-  h2, .h2 { font-family: var(--font-serif); font-size: var(--h2); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
-  h3, .h3 { font-family: var(--font-serif); font-size: var(--h3); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+  h1, .display-lg { font-family: var(--font-sans); font-size: 3.5rem; font-weight: 800; letter-spacing: -0.05em; line-height: 0.95; }
+  h2, .headline-lg { font-family: var(--font-sans); font-size: 2rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; }
+  h3 { font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
   
-  .display { font-family: var(--font-serif); font-size: var(--display); font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; }
-  .body-lg { font-size: var(--body-lg); line-height: 1.7; }
-  .label   { font-size: var(--label); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
-  .micro   { font-size: var(--micro); font-weight: 500; line-height: 1.4; }
+  .label-md { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-body); }
 }
 
 /* ── Custom Scrollbar ────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--g-100); }
-::-webkit-scrollbar-thumb { background: var(--g-500); border-radius: 999px; }
+::-webkit-scrollbar-track { background: var(--color-surface-container-low); }
+::-webkit-scrollbar-thumb { background: var(--color-primary-container); border-radius: 999px; }
 
 /* ── Utilities ───────────────────────────────────────────────── */
-.transition-std { transition: all var(--ms-std) var(--ease); }
-.hover-lift:hover { transform: translateY(-3px); }
+.ghost-border {
+  border: 1px solid rgba(216, 156, 178, 0.15); /* outline-variant at 15% */
+}
+
+.transition-organic { 
+  transition: all 300ms cubic-bezier(0.2, 0.8, 0.2, 1); 
+}
 
 /* ── Marquee ─────────────────────────────────────────────────── */
 @keyframes marquee {

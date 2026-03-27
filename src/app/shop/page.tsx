@@ -8,85 +8,87 @@ export default function ShopPage() {
     {
       id: 1,
       name: 'Guava Glow Serum',
-      price: '$34.00',
+      price: '$34',
       rating: '4.9',
-      reviews: '214 reviews',
+      reviews: '2.1k reviews',
       badge: 'BESTSELLER',
-      desc: 'Brightening daily hydration with 10% Vitamin C.',
-      bg: '#FDF7E6', // soft yellow/cream
+      badgeColor: 'bg-primary-container text-on-surface',
+      desc: 'Niacinamide-rich formula for instant brightening and deep hydration.',
+      bg: '#F3E5A6', // Using inline styles for specific product background vibrancy since it's dynamic imagery
       img: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
       id: 2,
       name: 'Juicy Cleanser',
-      price: '$28.00',
+      price: '$28',
       rating: '4.8',
-      reviews: '128 reviews',
+      reviews: '1.4k reviews',
       badge: null,
-      desc: 'Gentle exfoliating wash with fruit enzymes.',
-      bg: '#2C1A1A', // Dark background
+      desc: 'Gentle citrus foam that dissolves impurities without stripping moisture barrier.',
+      bg: '#0F2C41',
       img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
       id: 3,
-      name: 'Daily Glow Effervescent',
-      price: '$42.00',
+      name: 'Daily Glow',
+      price: '$42',
       rating: '5.0',
-      reviews: '89 reviews',
+      reviews: '890 reviews',
       badge: 'WELLNESS',
-      desc: 'Drop in water for an instant beauty boost.',
-      bg: '#FFFFFF', // Light card
+      badgeColor: 'bg-secondary text-on-primary',
+      desc: 'Vitamin C & Hyaluronic Acid drink for inner health and outer glow.',
+      bg: '#F9FBF9',
       img: 'https://images.unsplash.com/photo-1542614945-812e96ebcc7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     },
     {
       id: 4,
       name: 'Botanical Night Oil',
-      price: '$39.00',
+      price: '$39',
       rating: '4.7',
-      reviews: '156 reviews',
+      reviews: '1.1k reviews',
       badge: null,
-      desc: 'Deep barrier repair while you sleep.',
-      bg: '#1B4332', // Dark teal/green
+      desc: 'Overnight recovery oil infused with rare cold-pressed botanicals.',
+      bg: '#3A6C58',
       img: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
     }
   ];
 
   return (
-    <div className="bg-[var(--smoke)] min-h-screen font-sans text-[var(--ink)] pt-20">
+    <div className="bg-background min-h-screen font-body text-on-background pt-20">
       
-      {/* ── [HERO - SPLIT LAYOUT] ────────────────────────────────────── */}
+      {/* ── [HERO - SPLIT LAYOUT] ───── */}
       <section className="max-w-7xl mx-auto px-6 py-12">
-        <div className="bg-[var(--p-100)] rounded-[40px] flex flex-col lg:flex-row overflow-hidden min-h-[600px] shadow-sm">
+        <div className="bg-surface-container-low rounded-xl flex flex-col lg:flex-row overflow-hidden min-h-[600px] shadow-ambient">
           
           {/* Left Half (Text) */}
           <div className="flex-1 p-12 lg:p-20 flex flex-col justify-center">
-            <div className="inline-block px-4 py-1.5 mb-8 rounded-full bg-[var(--g-500)] text-white text-xs font-bold tracking-widest uppercase shadow-sm w-max">
+            <div className="inline-block px-4 py-1.5 mb-8 rounded-full bg-secondary-container text-on-secondary-container label-md shadow-sm w-max">
               NEW VITALITY COLLECTION
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-serif font-bold leading-none tracking-tight mb-8">
-              <span className="text-[var(--p-700)] block">JUICY</span>
-              <span className="text-[var(--g-500)] italic block">RADIANCE.</span>
+            <h1 className="display-lg leading-[0.9] tracking-tighter mb-8 text-primary">
+              <span className="block mb-2 font-sans font-black">JUICY</span>
+              <span className="text-secondary font-serif italic block font-normal text-[1.1em]">RADIANCE.</span>
             </h1>
             
-            <p className="text-lg text-black/60 font-medium mb-10 max-w-md leading-relaxed">
+            <p className="text-[15px] text-on-background/60 font-medium mb-10 max-w-sm leading-relaxed">
               Transform your skin with botanical power. Our Guava-infused formula delivers a high-energy glow that lasts all day. No fillers, just pure vitality.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="#products" className="px-8 py-4 bg-[var(--p-700)] text-white font-bold rounded-full text-center hover:bg-[#5C1B34] transition-colors shadow-lg uppercase tracking-widest text-sm">
+              <Link href="#products" className="px-8 py-4 bg-primary text-on-primary font-bold rounded-full text-center hover:bg-primary-container hover:text-on-surface transition-organic shadow-ambient text-[13px] tracking-wide">
                 Shop Collection
               </Link>
-              <Link href="/science" className="px-8 py-4 border-2 border-[var(--g-500)] text-[var(--g-500)] font-bold rounded-full text-center hover:bg-[var(--g-500)] hover:text-white transition-colors uppercase tracking-widest text-sm">
+              <Link href="/science" className="px-8 py-4 bg-secondary-container text-on-secondary-container font-bold rounded-full text-center hover:bg-secondary-fixed-dim transition-organic shadow-float text-[13px] tracking-wide">
                 The Science
               </Link>
             </div>
           </div>
 
           {/* Right Half (Image) */}
-          <div className="flex-1 relative min-h-[400px] lg:min-h-full">
+          <div className="flex-1 relative min-h-[400px] lg:min-h-full overflow-hidden group">
             <div 
-              className="absolute inset-0 bg-cover bg-center"
+              className="absolute inset-0 bg-cover bg-center transition-organic group-hover:scale-105"
               style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80")' }}
             />
             {/* Floating Review Card */}
@@ -94,13 +96,13 @@ export default function ShopPage() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="absolute bottom-12 left-12 bg-white/95 backdrop-blur-md rounded-[20px] p-6 shadow-xl max-w-xs"
+              className="absolute bottom-10 left-10 bg-surface-container-lowest rounded-md p-6 shadow-ambient max-w-[240px]"
             >
-              <div className="flex gap-1 mb-2">
-                {[1,2,3,4,5].map(star => <span key={star} className="text-[var(--g-500)] text-lg">★</span>)}
+              <div className="flex gap-1 mb-3">
+                {[1,2,3,4,5].map(star => <span key={star} className="text-secondary text-[12px]">★</span>)}
               </div>
-              <p className="font-serif font-bold text-[var(--ink)] text-lg mb-2">"Best serum I've ever used."</p>
-              <p className="text-xs text-black/50 font-bold uppercase tracking-widest">— Sarah J.</p>
+              <p className="font-sans font-bold text-on-background text-[14px] leading-tight mb-3">"Best serum I've ever used."</p>
+              <p className="label-md text-on-background/50">— Sarah J.</p>
             </motion.div>
           </div>
         </div>
@@ -110,70 +112,79 @@ export default function ShopPage() {
       <section id="products" className="py-24 max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-end mb-12">
           <div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[var(--ink)] mb-4">Our Daily Essentials</h2>
-            <p className="text-lg text-black/50 font-medium">Clean, effective, and bursting with flavor.</p>
+            <h2 className="headline-lg text-primary mb-2 tracking-tight">Our Daily Essentials</h2>
+            <p className="text-[14px] text-on-background/60 font-medium">Clean, effective, and bursting with flavor.</p>
           </div>
-          <div className="hidden md:flex gap-4">
-            <button className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center hover:bg-white transition-colors">←</button>
-            <button className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center hover:bg-white transition-colors">→</button>
+          <div className="hidden md:flex gap-3">
+            <button className="w-10 h-10 rounded-full ghost-border flex items-center justify-center hover:bg-surface-container-high transition-organic">
+              <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button className="w-10 h-10 rounded-full ghost-border flex items-center justify-center hover:bg-surface-container-high transition-organic">
+              <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map(product => {
-            const isDark = product.bg === '#2C1A1A' || product.bg === '#1B4332';
-            const textColor = isDark ? 'text-white' : 'text-[var(--ink)]';
-            const subTextColor = isDark ? 'text-white/60' : 'text-black/50';
-
-            return (
+          {products.map(product => (
+            <div 
+              key={product.id} 
+              className="bg-surface-container-lowest rounded-xl p-5 shadow-float flex flex-col group overflow-hidden ghost-border"
+            >
+              {/* Image Container with Custom BG */}
               <div 
-                key={product.id} 
-                className={`rounded-[32px] p-6 flex flex-col justify-between shadow-sm relative group`}
+                className="w-full h-[240px] rounded-md relative overflow-hidden mb-6 flex items-center justify-center shadow-inner group-hover:scale-[1.03] transition-organic"
                 style={{ backgroundColor: product.bg }}
               >
                 {product.badge && (
-                  <div className="absolute top-6 left-6 z-10 bg-white text-[var(--ink)] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
+                  <div className={`absolute top-4 left-4 z-10 ${product.badgeColor} label-md px-3 py-1.5 rounded-full shadow-md`}>
                     {product.badge}
                   </div>
                 )}
-                
                 <div 
-                  className="w-full h-48 bg-cover bg-center rounded-2xl mb-6 shadow-sm group-hover:scale-[1.02] transition-transform duration-500"
+                  className="w-[80%] h-[80%] bg-contain bg-no-repeat bg-center"
                   style={{ backgroundImage: `url("${product.img}")` }}
                 />
-                
-                <div>
-                  <div className={`flex gap-1 mb-2 ${isDark ? 'text-[var(--g-500)]' : 'text-[var(--p-700)]'}`}>
-                    <span>★</span>
-                    <span className="text-sm font-bold ml-1">{product.rating}</span>
-                    <span className={`text-xs ml-2 ${subTextColor}`}>({product.reviews})</span>
-                  </div>
-                  <h3 className={`text-2xl font-serif font-bold mb-2 ${textColor}`}>{product.name}</h3>
-                  <p className={`text-sm mb-6 ${subTextColor}`}>{product.desc}</p>
+              </div>
+              
+              <div className="px-2 flex-grow flex flex-col relative">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-[17px] font-sans font-bold text-on-background tracking-tight leading-tight pr-4">{product.name}</h3>
+                  <span className="text-[15px] font-bold text-on-background/50 mt-0.5">{product.price}</span>
                 </div>
+                
+                <div className="flex items-center gap-1 mb-4 text-secondary">
+                  <span className="text-[12px]">★</span>
+                  <span className="text-[11px] font-bold">{product.rating}</span>
+                  <span className="text-[11px] text-on-background/40 font-bold ml-1">({product.reviews})</span>
+                </div>
+                
+                <p className="text-[12px] text-on-background/60 font-medium leading-relaxed mb-8">{product.desc}</p>
 
-                <div className="flex justify-between items-center mt-auto">
-                  <span className={`text-xl font-bold ${textColor}`}>{product.price}</span>
-                  <button className="w-12 h-12 bg-[var(--p-700)] text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                <div className="mt-auto">
+                  <button className="w-full h-[48px] bg-surface-container-high text-primary rounded-full flex items-center justify-center gap-2 text-[13px] font-bold hover:bg-primary z-10 hover:text-on-primary transition-organic shadow-sm relative overflow-hidden group/btn">
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      Add to Cart
+                    </span>
                   </button>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
 
       {/* ── [PINK GUAVA FEATURE SECTION] ─────────────────────────────── */}
-      <section className="py-24">
-        <div className="flex flex-col lg:flex-row min-h-[600px]">
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex flex-col lg:flex-row min-h-[500px] rounded-xl overflow-hidden shadow-ambient-lg">
           
           {/* Left Half */}
-          <div className="flex-1 bg-[var(--p-100)] p-12 lg:p-24 flex flex-col justify-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--g-700)] tracking-tighter mb-2">
+          <div className="flex-1 bg-surface-container-low p-16 lg:p-24 flex flex-col justify-center">
+            <h2 className="headline-lg text-primary tracking-tight mb-2">
               THE POWER OF
             </h2>
-            <h2 className="text-6xl md:text-7xl font-serif italic text-[var(--g-500)] mb-12">
+            <h2 className="text-[56px] md:text-[64px] font-serif italic text-secondary leading-none mb-12">
               PINK GUAVA.
             </h2>
 
@@ -183,13 +194,13 @@ export default function ShopPage() {
                 { title: 'Instant Hydration', desc: 'Naturally occurring minerals lock in moisture for a plump, juicy finish.' },
                 { title: 'Pore Refining', desc: 'Gentle tannins in the fruit help tighten pores and smooth skin texture.' }
               ].map(item => (
-                <li key={item.title} className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-[var(--g-500)] flex items-center justify-center text-white flex-shrink-0 mt-1 shadow-sm">
-                    🌿
+                <li key={item.title} className="flex gap-5">
+                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-on-primary flex-shrink-0 shadow-md">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-[var(--ink)] mb-1">{item.title}</h4>
-                    <p className="text-black/60 leading-relaxed">{item.desc}</p>
+                    <h4 className="text-[16px] font-bold text-primary tracking-tight mb-1.5">{item.title}</h4>
+                    <p className="text-[14px] text-on-background/70 leading-relaxed font-medium">{item.desc}</p>
                   </div>
                 </li>
               ))}
@@ -197,9 +208,9 @@ export default function ShopPage() {
           </div>
 
           {/* Right Half */}
-          <div className="flex-1 relative min-h-[400px]">
+          <div className="flex-1 relative min-h-[400px] overflow-hidden group">
             <div 
-              className="absolute inset-0 bg-cover bg-center"
+              className="absolute inset-0 bg-cover bg-center transition-organic group-hover:scale-105"
               style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")' }}
             />
           </div>
@@ -207,24 +218,24 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* ── [EMAIL SIGNUP BANNER] ────────────────────────────────────── */}
-      <section className="py-24 px-6 max-w-6xl mx-auto">
-        <div className="bg-[var(--p-700)] rounded-[40px] p-12 md:p-20 text-center shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[80vw] h-[80vw] bg-white/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4" />
+      {/* ── [JOIN THE GLOW SQUAD BANNER] ─────────────────────────────── */}
+      <section className="py-24 px-6 max-w-6xl mx-auto relative z-10">
+        <div className="bg-gradient-to-br from-primary to-primary-container rounded-xl p-16 md:p-24 text-center shadow-ambient-lg relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-surface-container-lowest/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
           
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">Join the Glow Squad</h2>
-            <p className="text-white/80 text-lg mb-10 max-w-lg mx-auto">
+          <div className="relative z-10 max-w-lg mx-auto">
+            <h2 className="headline-lg text-on-primary mb-6 tracking-tight">Join the Glow Squad</h2>
+            <p className="text-on-primary/80 text-[14px] mb-12 mx-auto font-medium">
               Get exclusive early access to product drops and 15% off your first order.
             </p>
 
-            <form className="flex flex-col md:flex-row gap-4 justify-center items-center" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col sm:flex-row gap-4 justify-center items-center" onSubmit={(e) => e.preventDefault()}>
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="w-full md:w-96 h-14 bg-[var(--p-100)] rounded-full px-6 text-[var(--ink)] font-bold placeholder:text-[var(--p-700)]/40 focus:outline-none focus:ring-4 focus:ring-white/20 transition-shadow"
+                className="w-full sm:flex-1 h-[56px] bg-inverse-surface/10 border border-outline-variant/30 rounded-full px-8 text-on-primary text-[14px] font-bold placeholder:text-on-primary/40 focus:outline-none focus:bg-inverse-surface/20 focus:border-outline-variant/50 transition-organic shadow-inner"
               />
-              <button className="w-full md:w-auto h-14 px-10 bg-white text-[var(--p-700)] rounded-full font-bold uppercase tracking-widest text-sm hover:bg-[var(--smoke)] transition-colors shadow-sm">
+              <button className="w-full sm:w-auto h-[56px] px-10 bg-surface-container-lowest text-primary rounded-full font-bold text-[13px] hover:scale-105 transition-organic shadow-ambient">
                 Subscribe Now
               </button>
             </form>
@@ -233,43 +244,44 @@ export default function ShopPage() {
       </section>
 
       {/* ── [FOOTER] ─────────────────────────────────────────────────── */}
-      <footer className="bg-white pt-24 pb-12 px-6 border-t border-black/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <footer className="bg-surface pt-12 pb-12 px-6">
+        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div>
-            <h2 className="text-3xl font-black text-[var(--p-700)] tracking-tighter mb-6">PLIX</h2>
+            <h2 className="headline-lg text-primary tracking-tighter mb-6">Plix</h2>
+            <p className="text-[13px] text-on-background/50 leading-relaxed max-w-[200px] mb-8 font-medium">Empowering your wellness journey through juicy, high-impact botanical science.</p>
             <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-full bg-[var(--smoke)] flex items-center justify-center text-[var(--p-700)] hover:bg-[var(--p-100)] transition-colors cursor-pointer">IG</div>
-              <div className="w-10 h-10 rounded-full bg-[var(--smoke)] flex items-center justify-center text-[var(--p-700)] hover:bg-[var(--p-100)] transition-colors cursor-pointer">TT</div>
-              <div className="w-10 h-10 rounded-full bg-[var(--smoke)] flex items-center justify-center text-[var(--p-700)] hover:bg-[var(--p-100)] transition-colors cursor-pointer">FB</div>
+              <div className="w-8 h-8 rounded-full bg-surface-container-high ghost-border flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-organic cursor-pointer shadow-sm text-xs font-bold">IG</div>
+              <div className="w-8 h-8 rounded-full bg-surface-container-high ghost-border flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-organic cursor-pointer shadow-sm text-xs font-bold">TT</div>
+              <div className="w-8 h-8 rounded-full bg-surface-container-high ghost-border flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-organic cursor-pointer shadow-sm text-xs font-bold">FB</div>
             </div>
           </div>
           <div>
-            <h4 className="font-bold text-[var(--ink)] uppercase text-xs tracking-widest mb-6 border-b border-black/5 pb-4">Shop</h4>
-            <ul className="space-y-4 text-sm text-[var(--ink)]/60 font-medium">
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Skincare</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Nutrition</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Bundles</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">New Arrivals</Link></li>
+            <h4 className="label-md text-primary mb-6 border-b border-outline-variant/20 pb-4">Shop</h4>
+            <ul className="space-y-4 text-[13px] text-on-background/60 font-medium">
+              <li><Link href="#" className="hover:text-primary transition-organic">Skincare</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-organic">Nutrition</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-organic">Bundles</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-organic">New Arrivals</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-[var(--ink)] uppercase text-xs tracking-widest mb-6 border-b border-black/5 pb-4">Support</h4>
-            <ul className="space-y-4 text-sm text-[var(--ink)]/60 font-medium">
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Shipping Info</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Contact Us</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Wholesale</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">FAQs</Link></li>
+            <h4 className="label-md text-primary mb-6 border-b border-outline-variant/20 pb-4">Support</h4>
+            <ul className="space-y-4 text-[13px] text-on-background/60 font-medium">
+              <li><Link href="#" className="hover:text-primary transition-organic">Shipping Info</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-organic">Contact Us</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-organic">Wholesale</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-organic">FAQs</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-[var(--ink)] uppercase text-xs tracking-widest mb-6 border-b border-black/5 pb-4">Legal</h4>
-            <ul className="space-y-4 text-sm text-[var(--ink)]/60 font-medium">
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-[var(--p-700)]">Terms of Service</Link></li>
+            <h4 className="label-md text-primary mb-6 border-b border-outline-variant/20 pb-4">Legal</h4>
+            <ul className="space-y-4 text-[13px] text-on-background/60 font-medium">
+              <li><Link href="#" className="hover:text-primary transition-organic">Privacy Policy</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-organic">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
-        <div className="text-center md:text-left border-t border-black/5 pt-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs font-bold text-black/40 uppercase tracking-widest">
+        <div className="text-center md:text-left pt-8 max-w-[1100px] mx-auto flex flex-col md:flex-row justify-between items-center text-[11px] font-bold text-on-background/30 md:border-t md:border-outline-variant/20">
           <p>© {new Date().getFullYear()} Plix Life.</p>
         </div>
       </footer>
