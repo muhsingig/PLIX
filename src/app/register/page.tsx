@@ -65,7 +65,9 @@ export default function RegisterPage() {
 
       {/* Logo */}
       <div className="relative z-10 w-full flex justify-center mb-8">
-        <Link href="/" className="text-[28px] font-sans font-black tracking-tighter text-primary">PLIX</Link>
+        <Link href="/" className="flex items-center justify-center select-none">
+          <img src="/logo.png" alt="Plix Logo" className="h-10 w-auto object-contain" />
+        </Link>
       </div>
 
       {/* Card */}

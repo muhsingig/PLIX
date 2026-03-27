@@ -219,7 +219,7 @@ export default function SciencePage() {
       <footer className="bg-surface pt-12 pb-12 px-6">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div>
-            <h2 className="headline-lg text-primary tracking-tighter mb-6">Plix</h2>
+            <img src="/logo.png" alt="Plix Logo" className="h-8 w-auto mb-6 object-contain" />
             <p className="text-[13px] text-on-background/50 leading-relaxed max-w-[200px] mb-8 font-medium">Clean, plant-based science. Radiant by nature, clinical by choice. We believe in the power of botanical synergy.</p>
           </div>
           <div>

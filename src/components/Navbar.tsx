@@ -45,10 +45,8 @@ export default function Navbar() {
         `}>
           
           {/* Left: Logo */}
-          <Link href="/" className="text-[22px] font-sans font-black tracking-tighter select-none flex items-center gap-0.5">
-            <span className="text-secondary">PL</span>
-            <span className="text-primary-container">I</span>
-            <span className="text-secondary">X</span>
+          <Link href="/" className="flex items-center select-none">
+            <img src="/logo.png" alt="Plix Logo" className="h-8 w-auto object-contain" />
           </Link>
 
           {/* Center: Nav Links */}

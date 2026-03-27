@@ -247,7 +247,7 @@ export default function ShopPage() {
       <footer className="bg-surface pt-12 pb-12 px-6">
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div>
-            <h2 className="headline-lg text-primary tracking-tighter mb-6">Plix</h2>
+            <img src="/logo.png" alt="Plix Logo" className="h-8 w-auto mb-6 object-contain" />
             <p className="text-[13px] text-on-background/50 leading-relaxed max-w-[200px] mb-8 font-medium">Empowering your wellness journey through juicy, high-impact botanical science.</p>
             <div className="flex gap-4">
               <div className="w-8 h-8 rounded-full bg-surface-container-high ghost-border flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-organic cursor-pointer shadow-sm text-xs font-bold">IG</div>

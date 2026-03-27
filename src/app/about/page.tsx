@@ -186,7 +186,7 @@ export default function AboutPage() {
           
           {/* Brand Col */}
           <div className="col-span-1 md:col-span-4 pr-8">
-            <h2 className="headline-lg text-primary mb-6">Plix</h2>
+            <img src="/logo.png" alt="Plix Logo" className="h-8 w-auto mb-6 object-contain" />
             <p className="text-[14px] text-on-background/50 mb-8 max-w-[280px] leading-relaxed">
               Empowering your wellness journey with juicy, high-impact botanical science. Born in the garden, perfected in the lab.
             </p>
