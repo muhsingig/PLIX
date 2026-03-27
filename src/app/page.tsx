@@ -6,10 +6,13 @@ export const metadata: Metadata = {
   description: "Your daily performance perfected.",
 };
 
+import LandingContent from '@/components/LandingContent';
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#F9F0EC]">
       <PlixGuavaGlowSequence />
+      <LandingContent />
     </main>
   );
 }
