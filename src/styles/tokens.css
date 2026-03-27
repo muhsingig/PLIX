@@ -4,17 +4,17 @@
   /* 🎨 Colors */
   --g-900: #0A1F12; /* Darkest green — deep shadows */
   --g-700: #1B4332; /* Core botanical green */
-  --g-500: #2D6A4F; /* Mid green — hover states */
+  --g-500: #5DBB63; /* Mid green — hover states */
   --g-300: #74C69D; /* Light green — accents */
   --g-100: #D8F3DC; /* Palest green — backgrounds */
   
-  --p-700: #C2185B; /* Deep pink — text on light */
+  --p-700: #7D2B4A; /* Deep pink — text on light */
   --p-500: #E8758C; /* Core blossom pink */
   --p-300: #F4A0A8; /* Soft pink — primary CTA */
-  --p-100: #FDE8EC; /* Palest pink — card tints */
+  --p-100: #F9D8D8; /* Palest pink — card tints */
   
-  --ink:   #0D0D0D; /* Near-black body text */
-  --smoke: #F7F5F2; /* Off-white page base */
+  --ink:   #2C1A1A; /* Near-black body text */
+  --smoke: #FDF0EE; /* Off-white page base */
   --cloud: #FFFFFF; /* Pure white cards */
 
   /* 📏 Spacing (8pt grid) */
