@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState, ReactNode } from
 import { Product } from '@/lib/products';
 
 export interface CartItem {
-  id: string;
+  id: number;
   name: string;
   price: number;
   originalPrice: number;
@@ -16,8 +16,8 @@ export interface CartItem {
 interface CartContextType {
   items: CartItem[];
   addItem: (product: Product) => void;
-  removeItem: (id: string) => void;
-  updateQuantity: (id: string, qty: number) => void;
+  removeItem: (id: number) => void;
+  updateQuantity: (id: number, qty: number) => void;
   clearCart: () => void;
   totalItems: number;
   subtotal: number;
@@ -61,9 +61,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  const removeItem = (id: string) => setItems(prev => prev.filter(i => i.id !== id));
+  const removeItem = (id: number) => setItems(prev => prev.filter(i => i.id !== id));
 
-  const updateQuantity = (id: string, qty: number) => {
+  const updateQuantity = (id: number, qty: number) => {
     if (qty < 1) { removeItem(id); return; }
     setItems(prev => prev.map(i => i.id === id ? { ...i, quantity: qty } : i));
   };
