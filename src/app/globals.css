@@ -1,38 +1,44 @@
+/* ── Plix Brand Design Tokens ─────────────────────────────────── */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --plix-pink:        #F4A0A8;
+  --plix-pink-deep:   #E8758C;
+  --plix-green:       #1B4332;
+  --plix-green-mid:   #2D6A4F;
+  --plix-green-light: #95D5B2;
+  --plix-sage:        #F9F0EC;
+  --plix-purple:      #7B2D8B;
+  --plix-white:       #FFFFFF;
+  --plix-ink:         #1A1A1A;
+  --plix-muted:       #6B7280;
+}
+
 @layer base {
   body {
-    background-color: #F9F0EC;
-    color: #1a1a1a;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--plix-sage);
+    color: var(--plix-ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 }
 
-/* Custom Guava Glow scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-}
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--plix-sage); }
+::-webkit-scrollbar-thumb { background: var(--plix-pink); border-radius: 999px; }
 
-::-webkit-scrollbar-track {
-  background: #F9F0EC;
+/* Ticker animation */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-
-::-webkit-scrollbar-thumb {
-  background: #F4A0A8;
-  border-radius: 8px;
-  border: 3px solid #F9F0EC;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #e38d96;
-}
-
-/* Base resets to avoid jitter */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
+.ticker-track { animation: ticker 30s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
